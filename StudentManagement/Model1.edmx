@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="registerdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="course_tab">
+          <Key>
+            <PropertyRef Name="Course_Id" />
+          </Key>
+          <Property Name="Course_Id" Type="int" Nullable="false" />
+          <Property Name="Course" Type="varchar" MaxLength="50" />
+          <Property Name="Course1" Type="varchar" MaxLength="50" />
+          <Property Name="Course2" Type="varchar" MaxLength="50" />
+          <Property Name="Course3" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Fee_tab">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Course" Type="varchar" MaxLength="50" />
+          <Property Name="Amount" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="info_tab">
+          <Key>
+            <PropertyRef Name="Student_ID" />
+          </Key>
+          <Property Name="Student_ID" Type="int" Nullable="false" />
+          <Property Name="Student_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Email_Address" Type="varchar" MaxLength="50" />
+          <Property Name="Mobile" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'registerdb.dbo.regis_tab' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="regis_tab">
+          <Key>
+            <PropertyRef Name="FirstName" />
+          </Key>
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="Email_Address" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="student_tab">
+          <Key>
+            <PropertyRef Name="Student_ID" />
+          </Key>
+          <Property Name="Student_ID" Type="int" Nullable="false" />
+          <Property Name="Student_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Course" Type="varchar" MaxLength="50" />
+          <Property Name="Score" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_USERS">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="bigint" Nullable="false" />
+          <Property Name="USERNAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="PASSWORD" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="teacher_tab">
+          <Key>
+            <PropertyRef Name="Teacher_ID" />
+          </Key>
+          <Property Name="Teacher_ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Age" Type="int" />
+        </EntityType>
+        <EntityContainer Name="registerdbModelStoreContainer">
+          <EntitySet Name="course_tab" EntityType="Self.course_tab" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fee_tab" EntityType="Self.Fee_tab" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="info_tab" EntityType="Self.info_tab" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="student_tab" EntityType="Self.student_tab" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_USERS" EntityType="Self.TBL_USERS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="teacher_tab" EntityType="Self.teacher_tab" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="regis_tab" EntityType="Self.regis_tab" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [regis_tab].[FirstName] AS [FirstName], 
+    [regis_tab].[LastName] AS [LastName], 
+    [regis_tab].[Email_Address] AS [Email_Address], 
+    [regis_tab].[Password] AS [Password]
+    FROM [dbo].[regis_tab] AS [regis_tab]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="registerdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TBL_USERS">
+          <Key>
+            <PropertyRef Name="AUTOID" />
+          </Key>
+          <Property Name="AUTOID" Type="Int64" Nullable="false" />
+          <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="registerdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TBL_USERS" EntityType="Self.TBL_USERS" />
+          <EntitySet Name="course_tab" EntityType="registerdbModel.course_tab" />
+          <EntitySet Name="Fee_tab" EntityType="registerdbModel.Fee_tab" />
+          <EntitySet Name="info_tab" EntityType="registerdbModel.info_tab" />
+          <EntitySet Name="student_tab" EntityType="registerdbModel.student_tab" />
+          <EntitySet Name="teacher_tab" EntityType="registerdbModel.teacher_tab" />
+          <EntitySet Name="regis_tab" EntityType="registerdbModel.regis_tab" />
+        </EntityContainer>
+        <EntityType Name="course_tab">
+          <Key>
+            <PropertyRef Name="Course_Id" />
+          </Key>
+          <Property Name="Course_Id" Type="Int32" Nullable="false" />
+          <Property Name="Course" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Course1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Course2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Course3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Fee_tab">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Course" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="info_tab">
+          <Key>
+            <PropertyRef Name="Student_ID" />
+          </Key>
+          <Property Name="Student_ID" Type="Int32" Nullable="false" />
+          <Property Name="Student_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Email_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="student_tab">
+          <Key>
+            <PropertyRef Name="Student_ID" />
+          </Key>
+          <Property Name="Student_ID" Type="Int32" Nullable="false" />
+          <Property Name="Student_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Course" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Score" Type="Int32" />
+        </EntityType>
+        <EntityType Name="teacher_tab">
+          <Key>
+            <PropertyRef Name="Teacher_ID" />
+          </Key>
+          <Property Name="Teacher_ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="Int32" />
+        </EntityType>
+        <EntityType Name="regis_tab">
+          <Key>
+            <PropertyRef Name="FirstName" />
+          </Key>
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="registerdbModelStoreContainer" CdmEntityContainer="registerdbEntities">
+          <EntitySetMapping Name="TBL_USERS">
+            <EntityTypeMapping TypeName="registerdbModel.TBL_USERS">
+              <MappingFragment StoreEntitySet="TBL_USERS">
+                <ScalarProperty Name="AUTOID" ColumnName="AUTOID" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="course_tab">
+            <EntityTypeMapping TypeName="registerdbModel.course_tab">
+              <MappingFragment StoreEntitySet="course_tab">
+                <ScalarProperty Name="Course3" ColumnName="Course3" />
+                <ScalarProperty Name="Course2" ColumnName="Course2" />
+                <ScalarProperty Name="Course1" ColumnName="Course1" />
+                <ScalarProperty Name="Course" ColumnName="Course" />
+                <ScalarProperty Name="Course_Id" ColumnName="Course_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fee_tab">
+            <EntityTypeMapping TypeName="registerdbModel.Fee_tab">
+              <MappingFragment StoreEntitySet="Fee_tab">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Course" ColumnName="Course" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="info_tab">
+            <EntityTypeMapping TypeName="registerdbModel.info_tab">
+              <MappingFragment StoreEntitySet="info_tab">
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email_Address" ColumnName="Email_Address" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Student_Name" ColumnName="Student_Name" />
+                <ScalarProperty Name="Student_ID" ColumnName="Student_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="student_tab">
+            <EntityTypeMapping TypeName="registerdbModel.student_tab">
+              <MappingFragment StoreEntitySet="student_tab">
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="Course" ColumnName="Course" />
+                <ScalarProperty Name="Student_Name" ColumnName="Student_Name" />
+                <ScalarProperty Name="Student_ID" ColumnName="Student_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="teacher_tab">
+            <EntityTypeMapping TypeName="registerdbModel.teacher_tab">
+              <MappingFragment StoreEntitySet="teacher_tab">
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Teacher_ID" ColumnName="Teacher_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="regis_tab">
+            <EntityTypeMapping TypeName="registerdbModel.regis_tab">
+              <MappingFragment StoreEntitySet="regis_tab">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email_Address" ColumnName="Email_Address" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
